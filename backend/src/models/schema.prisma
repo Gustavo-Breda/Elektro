@@ -1,0 +1,151 @@
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
+}
+
+model User {
+	id					Int				@id @default(autoincrement())
+	cpf					String			@unique
+	name				String
+	email				String			@unique
+	photo				String?
+	phone				String?
+
+	hash				String
+	salt				String
+
+	favorites			Favorite[]
+	products			Product[]
+	orders				Order[]
+
+	receivedMessages	Message[]		@relation("ReceivedMessages")
+	sentMessages		Message[]		@relation("SentMessages")
+
+	cart				Cart?
+
+  	@@map("user")
+}
+
+model Product {
+	id				Int			@id @default(autoincrement())
+	sellerId		Int			
+
+	name			String
+	price			Decimal		@db.Money
+	description		String?
+	quantity		Int
+	image			String?
+
+	seller			User		@relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+	categories		ProductCategory[]
+	favoriteOf		Favorite[]
+	onCartOf		ProductOnCart[]
+	
+	@@map("product")
+}
+
+model Category {
+	id			Int			@id @default(autoincrement())
+	name		String
+
+	products	ProductCategory[]
+}
+
+model ProductCategory {
+	productId			Int
+	categoryId			Int	
+
+	product 			Product	 		@relation(fields: [productId], references: [id], onDelete: Cascade)
+	category			Category		@relation(fields: [categoryId], references: [id], onDelete: Cascade)
+			
+	@@id([productId, categoryId])
+	@@map("product_category")
+}
+
+model Cart {
+	id				Int					@id @map("user_id")
+	total			Decimal				@map("total_value") @db.Money
+	
+	user			User				@relation(fields: [id], references: [id], onDelete: Cascade)
+	products		ProductOnCart[]
+
+	@@map("cart")
+}
+
+model ProductOnCart {
+	userId				Int
+	productId			Int  
+	quantity			Int
+
+	user				Cart		@relation(fields: [userId], references: [id], onDelete: Cascade)
+	product				Product   	@relation(fields: [productId], references: [id], onDelete: Cascade)
+	
+	@@id([userId, productId])
+	@@map("products_on_cart")
+}
+
+model Order {
+	id				Int				@id @default(autoincrement())
+	date			DateTime		@default(now())
+	total       	Decimal			@db.Money
+	status			Int
+	userId      	Int   
+	
+	user        	User			@relation(fields: [userId], references: [id], onDelete: Cascade)
+	products		OrderProduct[]
+	paymentMethod	PaymentMethod?
+
+	@@map("order")
+}
+
+model PaymentMethod {
+	id					Int			@id	@map("order_id")
+	type				Int
+	provider			Int
+	accountNumber		Int
+
+	order				Order   	@relation(fields: [id], references: [id], onDelete: Cascade)
+
+	@@map("payment_method")
+}
+
+model OrderProduct {
+	id					Int			@id	@map("order_id")
+	productName			String
+	productPrice		Decimal		@db.Money
+	productAmount		Int
+
+	order				Order   	@relation(fields: [id], references: [id], onDelete: Cascade)
+
+	@@map("order_products")
+}
+
+model Favorite {
+	userId			Int			
+	productId		Int
+
+	user			User		@relation(fields: [userId], references: [id], onDelete: Cascade)	
+	product 		Product	 	@relation(fields: [productId], references: [id], onDelete: Cascade)
+		
+	@@id([userId, productId])
+	@@map("favorite")
+}
+
+model Message {
+	id 				Int			@id @default(autoincrement())
+	time			DateTime	@default(now())
+	content 		String
+
+	senderId		Int   
+	receiverId		Int    
+
+	sender			User		@relation("ReceivedMessages", fields: [senderId], references: [id], onDelete: Cascade)
+	receiver		User		@relation("SentMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+	 
+	@@map("message")
+}
