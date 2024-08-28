@@ -1,20 +1,20 @@
 import React from "react";
-import Toast from "react-native-toast-message";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import { StatusBar } from "react-native";
 import { useForm } from "react-hook-form";
+import Toast from "react-native-toast-message";
+import { ScrollView, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BaseToast, BaseToastProps } from "react-native-toast-message";
 
-import { AuthContext } from "../../contexts/auth";
-import { ILogin }  from "../../services/userServices";
 import userServices from "../../services/userServices";
+import { ILogin }  from "../../services/userServices";
+import { AuthContext } from "../../contexts/auth";
+
 import { RegisterStackTypes } from "../../navigation/registerStack";
 
-import { Wrapper, WrapperForm } from "./styles";
-import { ContainerBtnFP, ContainerBtnSI, ContainerHeader, ConteinerForm } from "./styles";
-import { BtnForgotPassword, BtnForgotPasswordText, BtnSignIn, BtnSignInText, HeaderText } from "./styles";
+import { Wrapper, WrapperForm, HeaderText } from "./styles";
+import { ContainerBtnFP, ContainerBtnSubmit, ContainerHeader, ConteinerForm } from "./styles";
+import { BtnForgotPassword, BtnForgotPasswordText, BtnSubmit, BtnSubmitText } from "./styles";
 
 import { ToastError } from "../../components/toast";
 import { FormDivider } from "../../components/formDivider";
@@ -31,7 +31,7 @@ export const Login = () => {
             <BaseToast
             {...props}
             style={{ borderLeftColor: 'red' }}
-            contentContainerStyle={{ gap: 4, paddingLeft: 12.5 }}/>
+            contentContainerStyle={{gap: 4, paddingLeft: 12.5}}/>
         )
     };
 
@@ -65,48 +65,54 @@ export const Login = () => {
                 <HeaderText>Elektro</HeaderText>
             </ContainerHeader>
 
-            <ConteinerForm>
-                <WrapperForm>
-                    <ControlledFormContainer
-                    name="email"
-                    control={control}
-                    rules={{required: 'campo obrigatório'}}
-                    title='E-mail' 
-                    mode='normal' 
-                    screen='login'
-                    error={errors.email}
-                    placeholder='E-mail'
-                    source={require('../../assets/images/icon_login.svg')} />
+            <WrapperForm>
+                <ScrollView centerContent={true} showsVerticalScrollIndicator={false}>
+                    <ConteinerForm>
+                        <ControlledFormContainer
+                        name="email"
+                        control={control}
+                        rules={{required: 'campo obrigatório'}}
+                        title='E-mail' 
+                        mode='normal' 
+                        screen='login'
+                        error={errors.email}
+                        placeholder='E-mail'
+                        source={require('../../assets/images/icon_login.svg')} />
 
-                    <ControlledFormContainer
-                    name="password"
-                    control={control}
-                    rules={{required: 'campo obrigatório'}}
-                    title='Senha' 
-                    mode='password' 
-                    screen='login'
-                    placeholder='Senha' 
-                    secureTextEntry={true}
-                    error={errors.password}
-                    source={require('../../assets/images/icon_password.svg')} />
+                        <ControlledFormContainer
+                        name="password"
+                        control={control}
+                        rules={{required: 'campo obrigatório'}}
+                        title='Senha' 
+                        mode='password' 
+                        screen='login'
+                        placeholder='Senha' 
+                        secureTextEntry={true}
+                        error={errors.password}
+                        source={require('../../assets/images/icon_password.svg')} />
 
-                    <ContainerBtnFP>
-                        <BtnForgotPassword>
-                            <BtnForgotPasswordText>Esqueci minha senha</BtnForgotPasswordText>
-                        </BtnForgotPassword>
-                    </ContainerBtnFP>
+                        <ContainerBtnFP>
+                            <BtnForgotPassword>
+                                <BtnForgotPasswordText>Esqueci minha senha</BtnForgotPasswordText>
+                            </BtnForgotPassword>
+                        </ContainerBtnFP>
 
-                    <BtnForm style={{marginTop: 16, marginBottom: 16}} onPress={handleSubmit(handleOnSubmit)} text='Entrar' type={0}/>
+                        <BtnForm 
+                        type={0}
+                        text='Entrar' 
+                        onPress={handleSubmit(handleOnSubmit)} 
+                        style={{marginTop: 16, marginBottom: 16}}/>
 
-                    <FormDivider type={0}/>
+                        <FormDivider type={0}/>
 
-                    <ContainerBtnSI>
-                        <BtnSignIn onPress={() => { navigation.navigate('SignIn') }}>
-                            <BtnSignInText>Não possui cadastro? Cadastra-se!</BtnSignInText>
-                        </BtnSignIn>
-                    </ContainerBtnSI>
-                </WrapperForm>
-            </ConteinerForm>
+                        <ContainerBtnSubmit>
+                            <BtnSubmit onPress={() => { navigation.navigate('SignIn') }}>
+                                <BtnSubmitText>Não possui cadastro? Cadastra-se!</BtnSubmitText>
+                            </BtnSubmit>
+                        </ContainerBtnSubmit>
+                    </ConteinerForm>
+                </ScrollView>
+            </WrapperForm>
         </Wrapper>
     );
 }

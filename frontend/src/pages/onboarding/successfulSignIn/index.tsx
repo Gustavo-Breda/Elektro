@@ -4,12 +4,12 @@ import { Animated, StatusBar, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { globalStyles } from "../../../global/globalStyles";
+import BackArrow from "../../../assets/images/icon_r_arrow.svg";
+import ObdImage from "../../../assets/images/successfulSignIn.svg";
+
 import { BtnIcon } from "../../../components/buttons/btnIcon";
 import { RegisterStackTypes } from "../../../navigation/registerStack";
 import { Conteiner, ImageOnboarding, TextH3, TextH4, Wrapper } from "./styles";
-
-import ObdImage from "../../../assets/images/successfulSignIn.svg";
-import BackArrow from "../../../assets/images/icon_r_arrow.svg";
 
 
 export const SuccessfulSignIn = () => {

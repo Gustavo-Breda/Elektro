@@ -2,10 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Image, ScrollView, View } from "react-native";
 
-import { IProduct } from "../../services/productServices";
 import productServices from "../../services/productServices";
-
 import { globalStyles } from "../../global/globalStyles";
+
 import { LabelFilter, SearchFilter, WrapperFilter } from "./styles";
 import { ContainerSearch, InputField, Wrapper, WrapperContent } from "./styles";
 
@@ -13,12 +12,19 @@ import { HeaderUser } from "../../components/headerUser";
 import { ContainerCardSearch } from "../../components/containerCardSearch";
 
 
+type ProductData = {
+    id: number;
+    name: string;
+    price: string;
+    description: string;
+}
+
 export const Search = () => {
-    const [products, setProducts] = useState<IProduct[]>([]);
+    const [products, setProducts] = useState<ProductData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
 
-    const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<ProductData[]>([]);
     const [searchText, setSearchText] = useState<string>("");
 
     useEffect(() => {

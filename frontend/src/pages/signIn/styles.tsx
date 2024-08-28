@@ -21,10 +21,13 @@ export const HeaderTitle = styled.Text`
     line-height: 28px;
 `
 
-export const ConteinerForm = styled.View `
+export const ContainerForm = styled.View `
     width: 83%;
     max-width: 600px;
+
     margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     display: flex;
     align-items: center;

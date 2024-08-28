@@ -1,5 +1,5 @@
-import { Image, ImageSourcePropType } from "react-native"
-import { BtnStyle } from "./styles"
+import { Image, ImageSourcePropType } from "react-native";
+import { BtnStyle } from "./styles";
 
 
 export type BtnOnboardingProps = {

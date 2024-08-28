@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { globalStyles } from "../../../global/globalStyles";
 
+
 export const Wrapper = styled.View`
     width: 225px;
     height: 40px;

@@ -1,6 +1,7 @@
 import api from "../api";
 import { VALIDATION_API_KEY } from '@env';
 
+
 export interface ILogin {
     email: string;
     password: string;
@@ -42,9 +43,8 @@ export default {
     async getUser (token: string) {
         try {
             const response = await api.get("/userAuth", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }});
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response;
         } catch (error) {
             console.log(error);

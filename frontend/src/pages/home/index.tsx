@@ -12,8 +12,10 @@ import { globalStyles } from "../../global/globalStyles";
 import { Header } from "../../components/header";
 import { BtnIcon } from "../../components/buttons/btnIcon";
 import { BtnSearch } from "../../components/buttons/btnSearch";
-import { BtnDrawer } from "../../components/buttons/btnDrawer";
 import { ContainerCardHome } from "../../components/containerCardHome";
+
+import IconDrawer from '../../assets/images/icon_drawer.svg';
+import IconCart from '../../assets/images/icon_cart.svg';
 
 
 type ProductData = {
@@ -28,6 +30,7 @@ export const Home = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
 
+    const navigation = useNavigation<DrawerTypes>();
     const isFocused = useIsFocused();
 
     useEffect(() => {
@@ -45,28 +48,16 @@ export const Home = () => {
         fetchProducts();
     }, []); 
 
-    const BtnCart = () => {
-        const navigation = useNavigation<DrawerTypes>();
-    
-        return (
-            <BtnIcon 
-            source={require('../../assets/images/icon_cart.svg')}
-            onPress={() => navigation.navigate('Cart')}>
-            </BtnIcon>
-        )
-    }
-    
     return (
         <ScrollView showsVerticalScrollIndicator={false} horizontal={false}>
             <Header 
             backgroundColor={globalStyles.colors.primary_black}
-            headerLeft={BtnDrawer}
             headerCenter={BtnSearch}
-            headerRight={BtnCart}/>
+            headerLeft={() => <BtnIcon source={IconDrawer} onPress={() => navigation.openDrawer()}/>}
+            headerRight={() => <BtnIcon source={IconCart} onPress={() => navigation.navigate('Cart')}/>}/>
 
             <Wrapper>
                 <WrapperContent>
-                    
                     <ContainerElektro>
                         <Image 
                         style={{width: 40, height: 40}} 

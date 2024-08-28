@@ -6,7 +6,10 @@ import { globalStyles } from "../../global/globalStyles";
 
 import { Header, IHeader } from "../header";
 import { ProfilePhoto } from "../profilePhoto";
-import { BtnBackHome } from "../buttons/btnBackHome";
+
+import { BtnIcon } from "../buttons/btnIcon";
+import { useNavigation } from "@react-navigation/native";
+import { DrawerTypes } from "../../navigation/drawerNav";
 
 
 export type HeaderUserProps = IHeader & {
@@ -14,12 +17,22 @@ export type HeaderUserProps = IHeader & {
 }
 
 export const HeaderUser = (props: HeaderUserProps) => {
+    const navigation = useNavigation<DrawerTypes>();
     const Auth = React.useContext(AuthContext);
+
+    const btnBackHome = () => {
+        return (
+            <BtnIcon
+            onPress={() => navigation.navigate('Home')}
+            source={require('../../assets/images/icon_l_arrow.svg')}
+            btnImageStyle={{tintColor: globalStyles.colors.primary_black}}/>
+        )
+    }
 
     return (
         <Header 
-        headerLeft={BtnBackHome}
         backgroundColor={globalStyles.colors.primary_white}
+        headerLeft={btnBackHome}
         headerCenter={() => <HeaderTitle>{props.title}</HeaderTitle>}
         headerRight={() => <ProfilePhoto width={45} height={45} source={Auth?.user?.photo}/>}/>
     )

@@ -13,7 +13,6 @@ export const Wrapper = styled.View `
 
 /* -------------------------------------------------------------------------- */
 
-
 export const ContainerHeader = styled.ImageBackground `
     flex: 1;
     justify-content: center;
@@ -34,27 +33,29 @@ export const HeaderText = styled.Text `
 
 /* -------------------------------------------------------------------------- */
 
-export const ConteinerForm = styled.View `
+export const WrapperForm = styled.View`
     background-color: ${globalStyles.colors.primary_white};
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
     height: 60%;
 
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+`
+
+export const ConteinerForm = styled.View `
+    width: 83%;
+    max-width: 500px;
+
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 40px;
+
     display: flex;
-    align-items: center;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 16px;
 `;
 
-export const WrapperForm = styled.View `
-    width: 83%;
-    max-width: 600px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-`
+/* -------------------------------------------------------------------------- */
 
 export const ContainerBtnFP = styled.View `
     width: 100%;
@@ -78,7 +79,9 @@ export const BtnForgotPasswordText = styled.Text `
     line-height: 20px;
 `
 
-export const ContainerBtnSI = styled.View `
+/* -------------------------------------------------------------------------- */
+
+export const ContainerBtnSubmit = styled.View `
     width: 100%;
     margin-top: 20px;
     
@@ -87,12 +90,12 @@ export const ContainerBtnSI = styled.View `
     justify-content: center;
 `
 
-export const BtnSignIn = styled.Pressable `
+export const BtnSubmit = styled.Pressable `
     text-decoration-line: underline;
     color: #0271A0;
 `
 
-export const BtnSignInText = styled.Text `
+export const BtnSubmitText = styled.Text `
     color: #0271A0;
     font-family: "Montserrat";
     font-style: normal;

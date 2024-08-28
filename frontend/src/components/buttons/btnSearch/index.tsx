@@ -1,8 +1,8 @@
-import { Image, Pressable, Text } from "react-native"
-import { Container, SearchText, Wrapper } from "./styles"
+import { Image, Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native";
-import { HomeStackStypes } from "../../../navigation/homeStack";
 
+import { Container, SearchText, Wrapper } from "./styles"
+import { HomeStackStypes } from "../../../navigation/homeStack";
 
 export const BtnSearch = () => {
     const navigation = useNavigation<HomeStackStypes>();

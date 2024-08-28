@@ -61,7 +61,8 @@ export const CardProduct = (props: CardProductProps) => {
     }
 
     return (
-        <CardView style={{
+        <CardView 
+        style={{
             shadowColor: "grey", 
             shadowOpacity: 0.3,
             shadowOffset: { width: 5, height: 5 },

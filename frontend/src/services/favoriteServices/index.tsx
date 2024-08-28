@@ -5,9 +5,7 @@ export default {
     async favorite (productId: number, token: string) {
         try {
             const response = api.post("/favorite", {productId}, {
-                headers: {
-                    Authorization: 'Bearer '.concat(token),
-                },
+                headers: { Authorization: 'Bearer '.concat(token)} 
             });
             return response;
         } catch (error) {
@@ -18,9 +16,8 @@ export default {
     async isFavorite (productId: number, token: string) {
         try {
             const response = api.get(`/favorite/${productId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }});
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response;
         } catch (error) {
             console.log(error);
@@ -42,9 +39,8 @@ export default {
     async unfavorite (productId: number, token: string) {
         try {
             const response = api.delete(`/favorite/${productId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }});
+                headers: { Authorization: `Bearer ${token}` }
+            });
             return response;
         } catch (error) {
             console.log(error);

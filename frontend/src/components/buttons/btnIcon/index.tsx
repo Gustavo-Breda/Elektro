@@ -1,6 +1,5 @@
 import { GestureResponderEvent, ImageSourcePropType, ImageStyle, Pressable, ViewStyle } from "react-native";
-
-import { BtnStyle } from "./styles";
+import { BtnImage } from "./styles";
 
 
 export interface IBtnIcon {
@@ -13,7 +12,7 @@ export interface IBtnIcon {
 export const BtnIcon = (props: IBtnIcon) => {
     return (
         <Pressable style={props.btnContainerStyle} onPress={props.onPress}>
-            <BtnStyle style={props.btnImageStyle} source={props.source}/>
+            <BtnImage style={props.btnImageStyle} source={props.source}/>
         </Pressable>
     )
 }

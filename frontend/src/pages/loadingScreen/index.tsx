@@ -4,6 +4,7 @@ import { Animated, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { Conteiner, Logo, Text } from "./styles";
+
 import { DrawerTypes } from "../../navigation/drawerNav";
 import { RegisterStackTypes } from "../../navigation/registerStack";
 
