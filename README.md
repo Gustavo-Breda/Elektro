@@ -17,8 +17,7 @@
 3. [Instalação](#instalação)
 4. [Configuração](#configuração)
 5. [Uso](#uso)
-6. [Arquitetura](#arquitetura)
-7. [Autores](#autores)
+6. [Autores](#autores)
 
 
 <br>
@@ -50,59 +49,57 @@ $ rm -r .git
 ```
 
 ### Pasta backend
-Abra o seu terminal e execute o comando para instalar as dependências da pasta backend:
+Abra um terminal, execute esses comandos e as dependências do back serão instaladadas na pasta `backend`:
+
+``` bash 
+$ npm install -g lemon-pie-cli
+```
 
 ``` bash
 $ cd backend
-$ npm install -g lemon-pie-cli
 $ npm install
 ```
 
 ### Pasta frontend
-Agora, execute os comandos abaixo para instalar as dependências da pasta frontend:
+Abra outro terminal, execute esses comandos e as dependências do front serão instaladadas na pasta `frontend`:
+
+``` bash 
+$ npm install -g expo-cli
+```
 
 ``` bash
-$ cd ..
 $ cd frontend
-$ npm install -g expo-cli
 $ yarn install
 ```
 
 ## Configuração
-Após a instalação, algumas preparações anteriores devem ser realizadas na pasta `backend`.
+Antes de rodar, renomeie em `backend` e `frontend` os arquivos `.env.example` para `.env` e adicione suas variáveis de ambiente
 
-A partir dos comandos abaixo, será feita a configuração da pasta `backend`:
+No terminal em `backend`, rodes os comandos de configuração do servidor:
 
 ``` bash
-$ cd ..
-$ cd backend
 $ npm run keys
 $ npx prisma migrate dev --name init
 ```
 
 ## Uso
-Antes de começar a usar, renomeie em `backend` e `frontend` os arquivos `.env.example` em `.env` e adicione seus dados
-
-Ainda na pasta `backend`, execute o seguinte comando para servir o aplicativo em um servidor customizado para posterior execução no frontend:
+No terminal em `backend`, execute o seguinte comando servindo Elektro um servidor customizado ao executar no frontend:
 
 ``` bash
 npm run dev ou npm start
 ```
 
-Com as configurações feitas, mude a seguir para a pasta `frontend`, para a execução do aplicativo utilizando os seguintes comandos:
+No terminal em `frontend`, execute o seguinte comando inicializando Elektro: 
 
 ``` bash
-cd ..
-cd frontend
 npm start
 ```
 
-## Arquitetura
-- [Figma]()
-- [Modelagem]()
+## Autor
+- Gustavo Breda
 
 
 <br>
 
 
-## Última atualização: 26/08/2024
+## Última atualização: 27/08/2024
